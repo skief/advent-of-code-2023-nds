@@ -1,0 +1,5 @@
+.idea
+cmake-*
+
+nds/generated
+inputs/*.txt
