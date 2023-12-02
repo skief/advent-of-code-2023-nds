@@ -50,3 +50,5 @@ foreach (day RANGE 1 2)
     target_compile_definitions(${day} PUBLIC DAY=${dayInt})
     nds_create_rom(${day})
 endforeach ()
+
+include(${CMAKE_CURRENT_SOURCE_DIR}/visualizations/day02/day02.cmake)
