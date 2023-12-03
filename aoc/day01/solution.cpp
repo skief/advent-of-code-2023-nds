@@ -7,7 +7,7 @@
 
 using namespace std;
 
-constexpr char *test =
+constexpr char *test = (char*)
 #include "../../inputs/day01.txt"
 ;
 
