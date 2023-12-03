@@ -6,14 +6,14 @@ set(CMAKE_CXX_STANDARD 17)
 add_custom_command(
         OUTPUT nds/generated/soundbank.bin nds/generated/soundbank.h
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/nds/generated
-        COMMAND /opt/devkitpro/tools/bin/mmutil ../sfx/* -d -osoundbank.bin -hsoundbank.h
+        COMMAND ${MMUTIL_EXE} ../sfx/* -d -osoundbank.bin -hsoundbank.h
 )
 
 add_custom_command(
         OUTPUT nds/generated/soundbank.o nds/generated/soundbank_bin.h
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/nds/generated
-        COMMAND /opt/devkitpro/tools/bin/bin2s -a 4 -H soundbank_bin.h soundbank.bin > tempFile
-        COMMAND /opt/devkitpro/devkitARM/bin/arm-none-eabi-gcc -x assembler-with-cpp -c tempFile -o soundbank.o
+        COMMAND ${DKP_BIN2S} -a 4 -H soundbank_bin.h soundbank.bin > tempFile
+        COMMAND ${CMAKE_C_COMPILER} -x assembler-with-cpp -c tempFile -o soundbank.o
         COMMAND rm tempFile
         DEPENDS nds/generated/soundbank.bin
 )
@@ -24,7 +24,7 @@ foreach (graphic in ${graphics})
     add_custom_command(
             OUTPUT nds/generated/${graphic}.c nds/generated/${graphic}.h
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/nds/generated
-            COMMAND /opt/devkitpro/tools/bin/grit ../gfx/${graphic}.bmp -gb -gB8 -ftc -o ${graphic}
+            COMMAND ${GRIT_EXE} ../gfx/${graphic}.bmp -gb -gB8 -ftc -o ${graphic}
             COMMAND cmake -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/nds/generated/
             COMMAND cp ${graphic}.* ${CMAKE_CURRENT_BINARY_DIR}/nds/generated/
     )
