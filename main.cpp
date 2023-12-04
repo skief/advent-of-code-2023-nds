@@ -7,11 +7,11 @@
 #include "nds/sounds.h"
 #include "nds/consoleTool.h"
 
-#include "solution.h"
-
 #ifndef DAY
 #error "DAY not defined"
 #endif
+
+extern void solve();
 
 #define TIMER_SPEED (BUS_CLOCK/1024)
 
@@ -40,7 +40,7 @@ int main() {
 
     timerStart(0, ClockDivider_1024, 0, NULL);
     Sounds::init();
-    Sounds::start();
+    // Sounds::start();
 
     // wait(3);
 

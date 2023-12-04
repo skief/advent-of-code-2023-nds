@@ -4,6 +4,8 @@
 #include <tuple>
 #include <string>
 
+#include "utils.h"
+
 using namespace std;
 
 constexpr char *test = (char*)
@@ -15,22 +17,6 @@ typedef struct {
     int green;
     int blue;
 } CubeCount;
-
-vector<string> split(const string& txt, const string& delim){
-    vector<string> results;
-
-    size_t start = 0;
-    size_t end;
-
-    while ((end = txt.find(delim, start)) != string::npos){
-        results.emplace_back(txt.substr(start, end - start));
-        start = end + delim.size();
-    }
-
-    results.emplace_back(txt.substr(start));
-
-    return results;
-}
 
 tuple<int, vector<CubeCount>> readGame(const string& line){
     size_t start, end;
