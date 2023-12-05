@@ -32,3 +32,14 @@ vector<int> toIntVec(const vector<string>& strVec){
 
     return results;
 }
+
+vector<int64_t> toIntVec64(const vector<string> &strs){
+    vector<int64_t> results;
+
+    results.reserve(strs.size());
+    for (const auto& str: strs){
+        results.emplace_back(stoll(str));
+    }
+
+    return results;
+}
