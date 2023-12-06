@@ -14,10 +14,10 @@ constexpr char *test = (char*)
 
 int64_t solve(int64_t time, int64_t dist){
     double t_2 = time / 2.0;
-    double root = sqrt(t_2 * t_2 - dist);
+    double root = sqrt(t_2 * t_2 - dist - 1);
 
-    int64_t lower = ceil(t_2 - root + 1e-9);
-    int64_t upper = floor(t_2 + root - 1e-9);
+    int64_t lower = ceil(t_2 - root);
+    int64_t upper = floor(t_2 + root);
 
     return upper - lower + 1;
 }
