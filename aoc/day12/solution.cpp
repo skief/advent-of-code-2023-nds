@@ -18,8 +18,7 @@ enum State{
     UNKNOWN
 };
 
-int64_t combinations(vector<vector<int64_t>> &dp, size_t pos, size_t groupPos,
-                     const vector<State> &state, const vector<int> &groups){
+int64_t combinations(size_t pos, size_t groupPos, const vector<State> &state, const vector<int> &groups){
     if (groupPos >= groups.size()){
         for (size_t i = pos; i < state.size(); i++){
             if (state[i] == DAMAGED){
@@ -36,7 +35,7 @@ int64_t combinations(vector<vector<int64_t>> &dp, size_t pos, size_t groupPos,
 
     int64_t res = 0;
     if (state[pos] == OPERATIONAL || state[pos] == UNKNOWN){
-        res += combinations(dp, pos + 1, groupPos, state, groups);
+        res += combinations(pos + 1, groupPos, state, groups);
     }
 
     if (pos + groups[groupPos] <= state.size()){
@@ -51,25 +50,18 @@ int64_t combinations(vector<vector<int64_t>> &dp, size_t pos, size_t groupPos,
         if (possible){
             if ((pos + groups[groupPos] < state.size() && state[pos + groups[groupPos]] != DAMAGED) ||
                 (pos + groups[groupPos] == state.size())){
-                res += combinations(dp, pos + groups[groupPos] + 1, groupPos + 1, state, groups);
+                res += combinations(pos + groups[groupPos] + 1, groupPos + 1, state, groups);
             }
         }
     }
 
-    dp[pos][groupPos] = res;
     return res;
-}
-
-int64_t combinations(const vector<State> &state, const vector<int> &groups){
-    vector<vector<int64_t>> dp(state.size(), vector(groups.size(), (int64_t) -1));
-
-    return combinations(dp, 0, 0, state, groups);
 }
 
 int part1(const vector<vector<State>> &states, const vector<vector<int>> &groups){
     int64_t sum = 0;
     for (size_t i = 0; i < states.size(); i++){
-        sum += combinations(states[i], groups[i]);
+        sum += combinations(0, 0, states[i], groups[i]);
     }
     return sum;
 }
@@ -91,7 +83,7 @@ int64_t part2(const vector<vector<State>> &states, const vector<vector<int>> &gr
             }
         }
 
-        sum += combinations(unfoldedState, unfoldedGroup);
+        sum += combinations(0, 0, unfoldedState, unfoldedGroup);
     }
     return sum;
 }
