@@ -20,7 +20,6 @@ int vertCheck(const vector<string>& map, size_t split){
         }
     }
 
-
     return smudges;
 }
 
