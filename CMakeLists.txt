@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
 project(advent_of_code_2023_nds)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 add_custom_command(
         OUTPUT nds/generated/soundbank.bin nds/generated/soundbank.h
@@ -35,7 +35,7 @@ set(media nds/generated/soundbank_bin.h nds/generated/background_night.c nds/gen
 set(nds nds/christmasTree.cpp nds/particleSystem.cpp nds/graphics.cpp nds/sounds.cpp ${media})
 set(nds_libs nds9 mm9 fat ${CMAKE_CURRENT_SOURCE_DIR}/nds/generated/soundbank.o)
 
-foreach (day RANGE 1 13)
+foreach (day RANGE 1 14)
     set(dayInt ${day})
     string(LENGTH "${day}" _strlen)
     if (_strlen EQUAL 1)
