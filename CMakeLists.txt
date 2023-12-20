@@ -35,7 +35,7 @@ set(media nds/generated/soundbank_bin.h nds/generated/background_night.c nds/gen
 set(nds nds/christmasTree.cpp nds/particleSystem.cpp nds/graphics.cpp nds/sounds.cpp ${media})
 set(nds_libs nds9 mm9 fat ${CMAKE_CURRENT_SOURCE_DIR}/nds/generated/soundbank.o)
 
-foreach (day RANGE 1 18)
+foreach (day RANGE 1 19)
     set(dayInt ${day})
     string(LENGTH "${day}" _strlen)
     if (_strlen EQUAL 1)
